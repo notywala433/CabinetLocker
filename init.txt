@@ -4,3 +4,4 @@ line after commit
 another line after commit
 Branch commit
 adding ponie
+change from terminal
