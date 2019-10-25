@@ -2,3 +2,4 @@ Testing
 Testing Testing
 line after commit
 another line after commit
+Branch commit
