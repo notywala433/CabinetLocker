@@ -1,0 +1,8 @@
+{
+    "title": "CabinetLocker",
+    "identifier": "com.yourcompany.wizardEVAP.CabinetLocker",
+    "orientation": "auto",
+    "versioncode": 1,
+    "versionname": "1.0.0",
+    "stage": "test"
+}
