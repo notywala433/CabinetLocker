@@ -1,7 +1,12 @@
 # allows to add DEPLOYMENTFOLDERS and links to the Felgo library and QtCreator auto-completion
 CONFIG += felgo
-QT += serialport
+QT += serialport svg qml quick
+CONFIG += link_pkgconfig
 
+    QT += svg
+    QTPLUGIN += qtvirtualkeyboardplugin
+
+target.path = $$[QT_INSTALL_EXAMPLES]/kb
 # uncomment this line to add the Live Client Module and use live reloading with your custom C++ code
 # for the remaining steps to build a custom Live Code Reload app see here: https://felgo.com/custom-code-reload-app/
 # CONFIG += felgo-live
@@ -67,6 +72,7 @@ HEADERS += \
     relay.h
 
 DISTFILES += \
+    ../../Downloads/images.jpg \
     qml/MainPage.qml \
     qml/PasswordPage.qml \
     qml/Retrievepage.qml \
@@ -75,3 +81,5 @@ DISTFILES += \
     qml/model/Logic.qml \
     qml/pages/Test.qml \
     qml/pages/AppSettings.qml
+
+

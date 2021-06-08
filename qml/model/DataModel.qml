@@ -15,6 +15,12 @@ Item {
     signal wrongPassEntered
     signal openSettings()
 
+    //Fetching data:
+    signal busyCommunicating()
+
+    //done fetching data:
+    signal doneCommunicating()
+
     // Storage data for the locks
 
     Storage{
@@ -67,6 +73,35 @@ Item {
 
     Item{
             id:_
+            property var  apiToken
+              Component.onCompleted:setApitoken()
+         //Get apiToken
+         function setApitoken()
+        {
+             var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+                             var theUrl = "http://greenfield.zemtech.co.za/symfony24/public/index.php/api/login_check";
+                              busyCommunicating();
+                             xmlhttp.open("POST", theUrl,true);
+                             xmlhttp.setRequestHeader('Content-Type', 'application/json');
+
+                             xmlhttp.onreadystatechange = function() {
+
+                                 if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                                    // Typical action to be performed when the document is ready:
+
+                                     _.apiToken = JSON.parse(xmlhttp.responseText);
+
+                                    console.log(_.
+                                                apiToken.token)
+                                       doneCommunicating()
+                                 }
+                             };
+
+
+                             xmlhttp.send(JSON.stringify({ "username": "notywala@yahoo.com", "password":"Thamin@433" } ));
+
+
+         }
 
         //Open a rented cabinet with a password
 

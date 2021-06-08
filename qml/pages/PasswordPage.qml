@@ -12,27 +12,30 @@ Page {
     property var freeCabinetNo
     property var password
     property bool deposit
+    property var focusItem
+
+
     leftBarItem: NavigationBarItem{
                                      contentWidth: 200
 
-                                      AppImage{
-                                                 anchors.centerIn: parent
-                                                 width: 200
-                                                // height:parent.height
 
-                                                 source: "file:/Users/Thami/Documents/build-CabinetLocker-Desktop_Qt_5_12_3_MinGW_32_bit-Release/assets/logo.png"
-                                              }
 
 
                                     }
     title: "Vacant cabinet No: "+freeCabinetNo
+    AppImage{
 
+               anchors.leftMargin:  parent.left
+               width: 400
+              // height:parent.height
+
+               source: "https://www.greenfield.co.za/wp-content/uploads/logo-1.png"
+            }
 
     Column{
         id:column
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.right: parent.right
+        anchors.centerIn: parent
+        spacing: 10
         anchors.margins: dp(Theme.navigationBar.defaultBarItemPadding)
         AppText{
         //anchors.centerIn:  parent
@@ -41,8 +44,27 @@ Page {
             horizontalAlignment: Text.AlignHCenter
 
 
+
         text: "Please enter your password and click on Enter"
 
+        }
+        AppTextField{
+        id:prescriptionText
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: dp(20)
+
+        height: dp(30)
+        width: parent.width/2
+        validator: IntValidator{
+            bottom:0
+            top:9
+
+        }
+        color: "black"
+        placeholderText: "Prescription No"
+
+        maximumLength: 4
+        onFocusChanged: focusItem = pwdText
         }
 
         AppTextField{
@@ -51,12 +73,16 @@ Page {
         anchors.margins: dp(20)
         height: dp(30)
         width: parent.width/2
+        color: "black"
+        onFocusChanged:{ focusItem = prescriptionText}
+
+        visible: !deposit
         validator: IntValidator{
             bottom:0
             top:9
 
         }
-        //placeholderText: "Please type in  your password"
+        placeholderText: "Password"
         echoMode: TextInput.Password
         maximumLength: 4
 
@@ -72,47 +98,47 @@ Page {
 
     AppButton{
         text:"1"
-        onClicked: pwdText.text = pwdText.text+"1"
+        onClicked: focusItem.text = focusItem.text+"1"
     }
     AppButton{
         text:"2"
-        onClicked: pwdText.text = pwdText.text+"2"
+        onClicked: focusItem.text = focusItem.text+"2"
     }
     AppButton{
         text:"3"
-        onClicked: pwdText.text = pwdText.text+"3"
+        onClicked: focusItem.text = focusItem.text+"3"
     }
     AppButton{
         text:"4"
-        onClicked: pwdText.text = pwdText.text+"4"
+        onClicked: focusItem.text = focusItem.text+"4"
     }
     AppButton{
         text:"5"
-        onClicked: pwdText.text = pwdText.text+"5"
+        onClicked: focusItem.text = focusItem.text+"5"
     }
     AppButton{
         text:"6"
-        onClicked: pwdText.text = pwdText.text+"6"
+        onClicked: focusItem.text = focusItem.text+"6"
     }
     AppButton{
         text:"7"
-        onClicked: pwdText.text = pwdText.text+"7"
+        onClicked:focusItem.text = focusItem.text+"7"
     }
     AppButton{
         text:"8"
-        onClicked: pwdText.text = pwdText.text+"8"
+        onClicked: focusItem.text = focusItem.text+"8"
     }
     AppButton{
         text:"9"
-        onClicked: pwdText.text = pwdText.text+"9"
+        onClicked: focusItem.text = focusItem.text+"9"
     }
     AppButton{
         icon: IconType.arrowleft
-        onClicked: pwdText.text = ""
+        onClicked: focusItem.text = ""
     }
     AppButton{
         text:"0"
-        onClicked: pwdText.text = pwdText.text+"0"
+        onClicked:focusItem.text = focusItem.text+"0"
     }
     AppButton{
        text:"Enter"
@@ -146,7 +172,7 @@ Page {
     }
 
 
-
+Component.onCompleted:  if(deposit){ focusItem = prescriptionText}
     Dialog {
            id: customDialog
            title:" The open cabinet is :" +freeCabinetNo
@@ -161,6 +187,7 @@ Page {
                    //anchors.horizontalCenter: parent.horizontalCenter
                id: dialogText
                anchors.fill: parent
+               color: "black"
                anchors.margins: dp(20)
                text: "Cabinet No: "+freeCabinetNo+" has been reserved for you"
                wrapMode: Text.WrapAtWordBoundaryOrAnywhere

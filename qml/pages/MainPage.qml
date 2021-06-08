@@ -5,11 +5,11 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import Qt.labs.settings 1.0
 
+
 Page {
            title   : qsTr("Touch to operate")
             id:main
            //Settings shortcut
-
 
 
            //App logo
@@ -17,16 +17,35 @@ Page {
            leftBarItem: NavigationBarItem{
                                             contentWidth: 200
 
-                                             AppImage{
-                                                        anchors.centerIn: parent
-                                                        width: 200
-                                                       // height:parent.height
 
-                                                        source: "file:/Users/Thami/Documents/build-CabinetLocker-Desktop_Qt_5_12_3_MinGW_32_bit-Release/assets/logo.png"
-                                                     }
 
 
                                            }
+           AppImage{
+
+               anchors.fill: parent
+
+           source: "../../assets/pngwing.com.png"
+           antialiasing: true
+
+           BusyIndicator {
+               id: busyIndicator
+               running: false
+               anchors.fill: parent
+               anchors.margins: 100
+           }
+
+           AppImage{
+
+                      anchors.leftMargin:  parent.left
+                      width: 400
+                     // height:parent.height
+
+                      source: "https://www.greenfield.co.za/wp-content/uploads/logo-1.png"
+                   }
+
+
+
                                     Column{
                                             anchors.centerIn    : parent
                                             anchors.margins     : dp(15)
@@ -43,12 +62,13 @@ Page {
                                                         }
                                                 Row{
                                                     // anchors.centerIn: parent
-                                                        spacing : 15
+                                                        spacing : 160
                                                        AppButton{
                                                                     // backgroundColor: "#BDE1FE"
                                                                     id          :retrieveButton
                                                                     text        : "Retrieve"
                                                                     icon: IconType.signout
+                                                                    radius: 50
                                                                     width       : dp(150)
                                                                     onClicked   :{var freeCabinet = 0
                                                                         for(var i =1;i<=settings.numberOfCabinets;i++){
@@ -75,9 +95,11 @@ Page {
                                                                 }
                                                        AppButton{
                                                                     //backgroundColor: "#BDE1FE"
+                                                           id: loadButton
                                                                     width       : dp(150)
-                                                                     text       : "Deposit"
+                                                                     text       : "Load"
                                                                     icon:IconType.signin
+                                                                    radius: 50
                                                                      onClicked  :{
                                                                                 logic.deposit()
                                                                                 timer.restart()
@@ -97,6 +119,20 @@ onLockOpened:navigationStack.push(components.passworPage,{freeCabinetNo:freeCabi
 onNoLockAvailable:{dialogText.text = "Unfortunately, there are no cabinets available for rental"
 cabinetDialog.open()}
 onOpenSettings: {navigationStack.push(components.settingsPage)}
+onBusyCommunicating:{
+retrieveButton.enabled = false
+busyIndicator.running = true
+    loadButton.enabled = false
+    console.log("busy")
+}
+onDoneCommunicating:{
+    retrieveButton.enabled = true
+    busyIndicator.running = false
+        loadButton.enabled = true
+        console.log("done")
+
+
+}
 }
 
 AppText{
@@ -131,3 +167,4 @@ wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
 }
 
+}
