@@ -4,28 +4,18 @@
 #include <QObject>
 Relay::Relay(QObject *parent) : QObject(parent)
 {
-    port = new QSerialPort;
-    port->setBaudRate(QSerialPort::Baud9600);
-    //port->open(QSerialPort::ReadWrite);
-    info = new QSerialPortInfo;
-    port->setDataBits(QSerialPort::Data8);
-    port->setFlowControl(QSerialPort::NoFlowControl);
-    port->setParity(QSerialPort::NoParity);
-    port->setStopBits(QSerialPort::OneStop);
-    port->setPortName("com4");
-     port->open(QSerialPort::ReadWrite);
+
 
 
      openHex = new QByteArray[25];
-      *(openHex+0) = QByteArray::fromHex("8A 01 00 11 9A");
-   *(openHex+1)= QByteArray::fromHex("8A 01 01 11 9B");
-    *(openHex+2)=QByteArray::fromHex("8A 01 02 11 98");
+     *(openHex+0) = QByteArray::fromHex("8A 01 00 11 9A");
+     *(openHex+1)= QByteArray::fromHex("8A 01 01 11 9B");
+     *(openHex+2)=QByteArray::fromHex("8A 01 02 11 98");
      *(openHex+3)=QByteArray::fromHex("8A 01 03 11 99");
      *(openHex+4) =QByteArray::fromHex("8A 01 04 11 9E");
      *(openHex+5)= QByteArray::fromHex("8A 01 05 11 9F");
      *(openHex+6) =QByteArray::fromHex("8A 01 06 11 9C");
      *(openHex+7)=QByteArray::fromHex("8A 01 07 11 9D");
-
      *(openHex+8) =QByteArray::fromHex("8A 01 08 11 92");
 
      *(openHex+9) =QByteArray::fromHex("8A 01 09 11 93");
@@ -58,7 +48,7 @@ Relay::Relay(QObject *parent) : QObject(parent)
      *(openHex+23) =QByteArray::fromHex("8A 01 17 11 8D");
 
      *(openHex+24) =QByteArray::fromHex("8A 01 18 11 82");
-        port->setParent(this);
+
 
 
      for (int i =0;i<25;i++) {
@@ -72,17 +62,12 @@ Relay::Relay(QObject *parent) : QObject(parent)
 }
 
 void Relay::openAllChannels()
-{   //port = new QSerialPort;
-
-
+{  
      QByteArray myHexArray = QByteArray::fromHex("8A 01 00 11 9A");
 
      qDebug()<<"Opening all chanells";
      port->write(myHexArray);
-     //port->close();
-
-
-
+     
 }
 
 void Relay::openChannel(int a)
@@ -108,8 +93,24 @@ QStringList Relay::availablePorts()
 
 void Relay::setPort(QString a)
 {
+
+
+ port = new QSerialPort;
+ port->setBaudRate(QSerialPort::Baud9600);
+ info = new QSerialPortInfo;
+ port->setDataBits(QSerialPort::Data8);
+ port->setFlowControl(QSerialPort::NoFlowControl);
+ port->setParity(QSerialPort::NoParity);
+ port->setStopBits(QSerialPort::OneStop);
  port->setPortName(a);
+ port->open(QSerialPort::ReadWrite);
+  port->setParent(this);
  qDebug()<<port->portName();
+}
+
+QString Relay::getPort()
+{
+   return port->portName();
 }
 
 void Relay::printSerialData(QByteArray a)

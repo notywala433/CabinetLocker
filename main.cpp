@@ -7,22 +7,17 @@
 #include <QSettings>
 #include<QDebug>
 #include<QQmlContext>
-#include<QtVirtualKeyboard/QtVirtualKeyboard>
+
 
 // uncomment this line to add the Live Client Module and use live reloading with your custom C++ code
 //#include <FelgoLiveClient>
 //this is code from the git example 2
 
 int main(int argc, char *argv[])
-{   qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
+{
     QApplication app(argc, argv);
     FelgoApplication felgo;
-    QQuickView view(QString("qrc:/%2").arg(MAIN_QML));
-       if (view.status() == QQuickView::Error)
-           return -1;
-       view.setResizeMode(QQuickView::SizeRootObjectToView);
 
-       view.show();
     // Use platform-specific fonts instead of Felgo's default font
     felgo.setPreservePlatformFonts(true);
     Relay *relayBoard = new Relay;

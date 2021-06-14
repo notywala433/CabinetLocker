@@ -103,7 +103,7 @@
 #define __LDBL_HAS_QUIET_NAN__ 1
 #define __FLT64_MANT_DIG__ 53
 #define _REENTRANT 1
-#define __GNUC__ 7
+#define __GNUC__ 8
 #define _cdecl __attribute__((__cdecl__))
 #define __GXX_RTTI 1
 #define __cpp_delegating_constructors 200604
@@ -120,7 +120,6 @@
 #define __INT_FAST32_MAX__ 0x7fffffff
 #define __WINNT 1
 #define __DBL_HAS_INFINITY__ 1
-#define __INT64_MAX__ 0x7fffffffffffffffLL
 #define __WINNT__ 1
 #define __DEC32_MIN_EXP__ (-94)
 #define __INTPTR_WIDTH__ 32
@@ -144,7 +143,7 @@
 #define __PTRDIFF_MAX__ 0x7fffffff
 #define __ATOMIC_HLE_ACQUIRE 65536
 #define __FLT32_HAS_QUIET_NAN__ 1
-#define __GNUG__ 7
+#define __GNUG__ 8
 #define __LONG_LONG_MAX__ 0x7fffffffffffffffLL
 #define __SIZEOF_SIZE_T__ 4
 #define __cpp_rvalue_reference 200610
@@ -156,7 +155,7 @@
 #define __FLT32_MAX_EXP__ 128
 #define __cpp_hex_float 201603
 #define __GCC_HAVE_DWARF2_CFI_ASM 1
-#define __GXX_ABI_VERSION 1011
+#define __GXX_ABI_VERSION 1012
 #define __FLT128_HAS_INFINITY__ 1
 #define __FLT_MIN_EXP__ (-125)
 #define __i686__ 1
@@ -180,7 +179,7 @@
 #define __i386 1
 #define __FLT_MANT_DIG__ 24
 #define __LDBL_DECIMAL_DIG__ 21
-#define __VERSION__ "7.3.0"
+#define __VERSION__ "8.1.0"
 #define __UINT64_C(c) c ## ULL
 #define __cpp_unicode_characters 200704
 #define __cpp_decltype_auto 201304
@@ -216,7 +215,6 @@
 #define __UINTMAX_C(c) c ## ULL
 #define __SIG_ATOMIC_MAX__ 0x7fffffff
 #define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
-#define __cpp_sized_deallocation 201309
 #define __SIZEOF_PTRDIFF_T__ 4
 #define __FLT32X_MANT_DIG__ 53
 #define __FLT32X_MIN_EXP__ (-1021)
@@ -243,6 +241,7 @@
 #define __SEG_FS 1
 #define __INT_LEAST16_MAX__ 0x7fff
 #define __DEC64_MANT_DIG__ 16
+#define __INT64_MAX__ 0x7fffffffffffffffLL
 #define __UINT_LEAST32_MAX__ 0xffffffffU
 #define __SEG_GS 1
 #define __FLT32_DENORM_MIN__ 1.40129846432481707092372958328991613e-45F32
@@ -255,6 +254,7 @@
 #define __INT_FAST8_MAX__ 0x7f
 #define __FLT128_MAX__ 1.18973149535723176508575932662800702e+4932F128
 #define __INTPTR_MAX__ 0x7fffffff
+#define __cpp_sized_deallocation 201309
 #define __GXX_MERGED_TYPEINFO_NAMES 0
 #define __cpp_range_based_for 200907
 #define __FLT64_HAS_QUIET_NAN__ 1
@@ -347,7 +347,7 @@
 #define __DEC128_MAX_EXP__ 6145
 #define __FLT32X_HAS_QUIET_NAN__ 1
 #define __ATOMIC_CONSUME 1
-#define __GNUC_MINOR__ 3
+#define __GNUC_MINOR__ 1
 #define __INT_FAST16_WIDTH__ 16
 #define __UINTMAX_MAX__ 0xffffffffffffffffULL
 #define __DEC32_MANT_DIG__ 7

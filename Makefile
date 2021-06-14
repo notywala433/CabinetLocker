@@ -241,7 +241,6 @@ Makefile: CabinetLocker.pro ../../../../Felgo/Felgo/mingw_32/mkspecs/win32-g++/q
 		../../../../Felgo/Felgo/mingw_32/mkspecs/features/resolve_config.prf \
 		../../../../Felgo/Felgo/mingw_32/mkspecs/features/exclusive_builds_post.prf \
 		../../../../Felgo/Felgo/mingw_32/mkspecs/features/default_post.prf \
-		../../../../Felgo/Felgo/mingw_32/mkspecs/features/link_pkgconfig.prf \
 		../../../../Felgo/Felgo/mingw_32/mkspecs/features/felgo.prf \
 		../../../../Felgo/Felgo/mingw_32/mkspecs/features/resources_functions.prf \
 		../../../../Felgo/Felgo/mingw_32/mkspecs/features/qtquickcompiler.prf \
@@ -449,7 +448,6 @@ Makefile: CabinetLocker.pro ../../../../Felgo/Felgo/mingw_32/mkspecs/win32-g++/q
 ../../../../Felgo/Felgo/mingw_32/mkspecs/features/resolve_config.prf:
 ../../../../Felgo/Felgo/mingw_32/mkspecs/features/exclusive_builds_post.prf:
 ../../../../Felgo/Felgo/mingw_32/mkspecs/features/default_post.prf:
-../../../../Felgo/Felgo/mingw_32/mkspecs/features/link_pkgconfig.prf:
 ../../../../Felgo/Felgo/mingw_32/mkspecs/features/felgo.prf:
 ../../../../Felgo/Felgo/mingw_32/mkspecs/features/resources_functions.prf:
 ../../../../Felgo/Felgo/mingw_32/mkspecs/features/qtquickcompiler.prf:

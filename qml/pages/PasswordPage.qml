@@ -22,10 +22,10 @@ Page {
 
 
                                     }
-    title: "Vacant cabinet No: "+freeCabinetNo
+    title: freeCabinetNo? "Vacant cabinet No: ": "Prescription Loading"
     AppImage{
-
-               anchors.leftMargin:  parent.left
+                anchors.left: parent.left
+               anchors.leftMargin: parent.leftMargin
                width: 400
               // height:parent.height
 
@@ -45,8 +45,8 @@ Page {
 
 
 
-        text: "Please enter your password and click on Enter"
-
+        text: "Please enter your Prescription No, Pin and click Enter"
+        color: "black"
         }
         AppTextField{
         id:prescriptionText
@@ -64,7 +64,8 @@ Page {
         placeholderText: "Prescription No"
 
         maximumLength: 4
-        onFocusChanged: focusItem = pwdText
+        onPressed: focusItem = prescriptionText
+        //onActiveFocusChanged: focusItem = pwdText
         }
 
         AppTextField{
@@ -74,7 +75,7 @@ Page {
         height: dp(30)
         width: parent.width/2
         color: "black"
-        onFocusChanged:{ focusItem = prescriptionText}
+        onPressed: { focusItem = pwdText}
 
         visible: !deposit
         validator: IntValidator{
@@ -157,22 +158,34 @@ Page {
                     navigationStack.pop()
                  }
                 else{
-                    password = pwdText.text
-                    logic.retrieve(freeCabinetNo,password)
+                   var preNumber = prescriptionText.text
+                    var password = pwdText.text
+                    logic.retrieve(preNumber,password)
+
                     navigationStack.popAllExceptFirst()
                 }}}}}
+
+
     AppText{
     width: parent.width
-    text: deposit? ("Please make sure your luggage is deposited in Cabinet No: "+freeCabinetNo+".\n"+"Close the door after depositing! "):("You are retrieving luggage from Cabinet No: "+freeCabinetNo+".\n"+"Close the door after retrieving! ")
+    text: deposit? ("Please close the door after depositing!"):("Please close the door after retrieving! ")
     color: "red"
     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
     horizontalAlignment: Text.AlignHCenter
 
     }
     }
+    AppButton{
+    text: "Cancel"
+    implicitWidth: column.implicitWidth
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: column.bottom
+    anchors.topMargin: 10
+    onClicked: navigationStack.pop()
 
+    }
 
-Component.onCompleted:  if(deposit){ focusItem = prescriptionText}
+Component.onCompleted:  if(!deposit){ focusItem = prescriptionText}
     Dialog {
            id: customDialog
            title:" The open cabinet is :" +freeCabinetNo

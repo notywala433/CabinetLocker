@@ -2,18 +2,19 @@ import Felgo 3.0
 import QtQuick 2.0
 import QtQuick 2.0
 import QtQuick 2.7
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
-import Qt.labs.settings 1.0
+
+
+
 import "model"
 import "pages"
 App {
+    id:app
     // You get free licenseKeys from https://felgo.com/licenseKey
     // With a licenseKey you can:
     // * Publish your games & apps for the app stores
     // * Remove the Felgo Splash Screen or set a custom one (available with the Pro Licenses)
     // * Add plugins to monetize, analyze & improve your apps (available with the Pro Licenses)
-    licenseKey: "E3C34971E19161150A77175DEF317DFA48FC1D0485985CE9E861A881EF5334403A13F2292C7CE7920FBA8C162015EF9D0A0E1858D6A96AB6C7B1C51E248AED3EE39BF2BA4FD44532082A484F59A28417B67D1E658525ACB7ACA9CBF78642DB848913FBE2F49E50818DB8C14526E84825A5E333059C8CACF7D78914A1FCB97946B6B00DE72612C679D8E1E36E4481D2AA72F2664A2428BEE50C2423AB26FFBEC7C2E706399B02F854CBC557838D267DBB1A791C01F5ABEDF40433B44C0C1EC2769585AE3F0205B4A0EF94A80D3EC4BB425B2A134E6956121910A5FD5479A42A9AB6AB60449ADC3E274E617D07CF14F168E62C008D406E2A3D07F0D24150709B49C714CA03DD4A0E9AF08647D7FD5AB084A362A31F98BDC515379EE30F658FF043D696315E37433B0E3E182963FBB8003FE6DB15F01158B9F2184AEDBAF708FE3C"
+    licenseKey: "9013056AADAD7D776F91E474C4DBDC4A909BC6B7B0EED1B3E6F21E8DE5785B24CD8D8F518D24112F82F774EE332A6C8BFA1F10AB0E359E0451BC1F5A226C8A72CE305057F4DBB2260F67F55F94119D84417915A69978D882FF673C472C2E5D27E36F1D65AE877EA3C674501CCDCB32B912D314AD5DFA69C01DAA9EBBF687B153ABE362A72C2DD2F3D35CCED314EBABC1C7CBCF0044390EFB7CCCB9003F5E8B36A1E43BD0915BF808A875B2B848B66369F52E6833BB0C2B0CF4CBB1B1CF0FFA7E9363B6EEDFEF287AEB001E163B22EC9847186845508C39CC7EF5983E6709780DD44793322FF3C5A4943EB0BA5936F86E5ECD5207F23828EFE73070D86ED074CF36FFB216ABAC67B56234BDB2344A1B28D57380D25B9EDEF9A1C75EFC19DF14574B816A1363F9B6B097F4806E7BA1D0C457800D9E3050007607E7C5757E1F80C9"
      onInitTheme:  {
          // Set the navigation bar background to blue
          Theme.navigationBar.backgroundColor = "green"
@@ -22,7 +23,17 @@ App {
          Theme.colors.textColor = "white"
        }
 
+
     Component.onCompleted: {
+       // open.setPort(settings.port)
+       // console.log("this is the port: "+ open.getPort())
+       var data =  {username : "admin",password : 1111}
+
+
+            app.settings.setValue("login", data)
+        var json1
+        json1 =app.settings.getValue("login",json1)
+
         open.setPort(String(settings.port))
          var xhr = new XMLHttpRequest(),
          body = JSON.stringify(
@@ -41,7 +52,7 @@ App {
          xhr.setRequestHeader('Authorization', 'tykg0nYdTQ6JGRQ-IYqIVQ==');
          xhr.onreadystatechange = function(){
              if (xhr.readyState == 4 && xhr.status == 200) {
-                 console.log('success');
+
              }
          };
 
@@ -49,7 +60,7 @@ App {
 
 
      }
-    //Components that are loaded on the go
+
     Item {
 
            anchors.fill: parent
@@ -62,6 +73,7 @@ App {
            }
        }
 
+    //Components that are loaded on the go
     Components{
     id:components}
 
@@ -72,7 +84,7 @@ App {
         interval: 10000
 
         repeat: true
-        //onTriggered: navigationStack.popAllExceptFirst()
+       //onTriggered: navigationStack.popAllExceptFirst()
 
 
     }
@@ -84,6 +96,11 @@ App {
     property var port
     property var comNo
     property var baudRate
+    property var hostname: "http://greenfield.zemtech.co.za/symfony24/public/index.php"
+    property var adminPassword: "1111"
+    property var apiUsername
+    property var apiPassword
+
 
     }
     Logic{

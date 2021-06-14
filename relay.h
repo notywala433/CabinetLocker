@@ -13,6 +13,7 @@ public:
      Q_INVOKABLE  void openChannel(int a);
     Q_INVOKABLE QStringList availablePorts();
      Q_INVOKABLE  void setPort(QString a);
+     Q_INVOKABLE  QString getPort();
 signals:
 
 public slots:
